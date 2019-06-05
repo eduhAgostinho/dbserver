@@ -25,8 +25,7 @@ console.log(pares2(5,15));
 /*
     Exercício 2
     Resposta: 
-    O loop nunca irá parar pois todos os números em JavaScript usam padrão IEEE 754, 
-    sendo assim as casas decimais não conseguem ser representadas com precisão perfeita.
+    O loop nunca irá parar pois todos os números em JavaScript não conseguem ser representadas com precisão perfeita.
 */
 
 // Exercício 3

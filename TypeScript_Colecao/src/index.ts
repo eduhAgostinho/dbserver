@@ -18,3 +18,9 @@ for (let sigla of mapa.keys()) {
 for (let estados of mapa.values()) {
     console.log(estados);
 }
+
+function logMapElements(value: string, key: string, map: Map<string,string>) {
+    console.log(`map.get('${key}') = ${value}`);
+}
+
+mapa.forEach(logMapElements);
