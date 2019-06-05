@@ -1,3 +1,4 @@
+// Lab 02
 //Exercício 1
 function pares(inicio: number, fim: number) {
     let par = [];
@@ -56,3 +57,13 @@ function toMaiusculaPrimeira(palavra: string): string {
 console.log(toMaiusculaPrimeira('eduardo'));
 
 //Exercício 6
+function getMax(numeros: Array<number>): number {
+    let maior = 0;
+    for (let i = 0; i<=numeros.length; i++) {
+        if (numeros[i] > maior) maior = numeros[i];
+    }
+    return maior;
+}
+console.log(getMax([50, 10, 8, 3851]));
+
+//Exercício 7
