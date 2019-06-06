@@ -1,4 +1,4 @@
-let mapa : Map <string, string>;
+let mapa : Map<string, string>;
 mapa = new Map();
 mapa.set('RS', 'Rio Grande do Sul');
 mapa.set('SC', 'Santa Catarina');
