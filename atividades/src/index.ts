@@ -1,7 +1,7 @@
 // Lab 02
 //Exercício 1
-function pares(inicio: number, fim: number) {
-    let par = [];
+function pares(inicio: number, fim: number): number[] {
+    let par: number[] = [];
     for(let i = inicio; i<=fim; i++ ) {
         if (i%2 === 0) {
             par.push(i);
@@ -10,8 +10,8 @@ function pares(inicio: number, fim: number) {
     return par;
 }
 console.log(pares(1,10));
-function pares2(inicio: number, fim: number) {
-    let par = [];
+function pares2(inicio: number, fim: number): number[] {
+    let par: number[] = [];
     let i = inicio;
     while(i<=fim) {
         if (i%2 === 0) {
@@ -66,22 +66,20 @@ function getMax(numeros: number[]): number {
     return maior;
 }
 console.log(getMax([50, 10, 8, 3851]));
+console.log(getMax([]));
+
 
 //Exercício 7
 // [ 1, 2 , 2, 3, 1, 2]
-function numFreq(lista: number[]): Map<number, string> {
-    lista.sort();
-    console.log(lista);
-    let mapa : Map<number, string>;
-    mapa = new Map();
-    let cont: number = 1
-    for(let i = 0; i < lista.length; i++) {
-        if (lista[i] === lista[i+1]) {
-            mapa.set(lista[i], (cont+1)+"x vezes");
+function numFreq(lista: number[]): Map<number, number> {
+    let mapa = new Map<number, number>();
+    for (let valor of lista) {
+        if (mapa.has(valor)) {
+            mapa.set(valor, (mapa.get(valor)||0)+1);
         } else {
-            mapa.set(lista[i], cont+"x vezes");
+            mapa.set(valor, 1);
         }
     }
     return mapa;
 }
-console.log(numFreq([ 1, 2 , 2, 3, 1, 2]));
+console.log(numFreq([ 1, 2 , 3, 2, 1, 2]));
