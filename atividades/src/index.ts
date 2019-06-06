@@ -70,12 +70,11 @@ console.log(getMax([]));
 
 
 //Exercício 7
-// [ 1, 2 , 2, 3, 1, 2]
 function numFreq(lista: number[]): Map<number, number> {
     let mapa = new Map<number, number>();
     for (let valor of lista) {
         if (mapa.has(valor)) {
-            mapa.set(valor, (mapa.get(valor)||0)+1);
+            mapa.set(valor, (mapa.get(valor)!+1)); // ! remove "null" e "undefined" do tipo
         } else {
             mapa.set(valor, 1);
         }
@@ -83,3 +82,8 @@ function numFreq(lista: number[]): Map<number, number> {
     return mapa;
 }
 console.log(numFreq([ 1, 2 , 3, 2, 1, 2]));
+
+function frequenciaV2(array: number[]): Map<number,number> {
+    return array.reduce((contagem, valor) => contagem.set(valor, (contagem.get(valor)||0)+1), new Map<number,number>());
+}
+console.log(frequenciaV2([ 1, 2 , 3, 2, 1, 2]));
