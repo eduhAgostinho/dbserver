@@ -68,7 +68,6 @@ function getMax(numeros: number[]): number {
 console.log(getMax([50, 10, 8, 3851]));
 console.log(getMax([]));
 
-
 //Exercício 7
 function numFreq(lista: number[]): Map<number, number> {
     let mapa = new Map<number, number>();
