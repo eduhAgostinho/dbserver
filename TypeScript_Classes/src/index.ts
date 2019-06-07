@@ -168,3 +168,7 @@ function filtrar<T> (array: T[], filtro: Predicado<T>): T[] {
 } 
 
 console.log(filtrar([0,10,1,3,2], i => i%2===0));
+
+// JSON.parse - string -> json
+// JSON.stringify - json -> string
+
