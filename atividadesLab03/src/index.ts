@@ -66,11 +66,6 @@ class Cofrinho {
     }
 
     calcularTotal(): number {
-        // let total = 0;
-        // for(let i of this.moedas) {
-        //     total += i.valor;
-        // }
-        // return total;
         const somador: (x: number, y: Moeda) => number = (soma,moeda) => soma + moeda.valor;
         return this.moedas.reduce(somador, 0);
     }
@@ -103,13 +98,13 @@ let moeda3: Moeda = new Moeda(10, "10 centavos");
 let moeda4: Moeda = new Moeda(1, "1 centavos");
 let moeda5: Moeda = new Moeda(50, "50 centavos");
 let cofre: Cofrinho = new Cofrinho();
-    cofre.adicionar(moeda1);
-    cofre.adicionar(moeda2);
-    cofre.adicionar(moeda3);
-    cofre.adicionar(moeda4);
-    cofre.adicionar(moeda4);
-    cofre.adicionar(moeda5);
-    cofre.adicionar(moeda5);
+cofre.adicionar(moeda1);
+cofre.adicionar(moeda2);
+cofre.adicionar(moeda3);
+cofre.adicionar(moeda4);
+cofre.adicionar(moeda4);
+cofre.adicionar(moeda5);
+cofre.adicionar(moeda5);
 console.log('-> Exercício 2');
 console.log(cofre.calcularTotal());
 console.log('-----------------------------------------------------');
