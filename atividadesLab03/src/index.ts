@@ -107,6 +107,7 @@ cofre.adicionar(moeda5);
 cofre.adicionar(moeda5);
 console.log('-> Exercício 2');
 console.log(cofre.calcularTotal());
+console.log(JSON.stringify(cofre));
 console.log('-----------------------------------------------------');
 
 // ----------------------------------------------------------------------------------------------
@@ -122,21 +123,72 @@ console.log('-----------------------------------------------------');
 
 // Exercício 4
 abstract class Cliente {
-    constructor(private umNome: string){}
+    constructor(private _nome: string){}
 
-    set nome(nome: string){
-        this.umNome = nome;
+    get nome(): string{
+        return this._nome;
     }
 
     abstract getMensalidade(): number;
 }
 
 class ClienteFisico extends Cliente{
-    constructor(umNome: string, umaIdade: number, umSalario: number) {
-        super(umNome);
+    constructor(_nome: string, private _idade: number, private _salario: number) {
+        super(_nome);
     }
 
-    getMensalidade() {
-        return 5;
+    getMensalidade(): number {
+        return this._idade<60?this._salario*0.15:this._salario*0.1;
+    }
+
+    get idade():number {
+        return this._idade;
+    }
+
+    set idade(i: number) {
+        this._idade = i;
+    }
+
+    get salario(): number {
+        return this._salario;
+    }
+
+    set salario(s: number) {
+        this._salario = s;
     }
 }
+
+class ClienteJuridico extends Cliente {
+    constructor(nome: string,private mensalidade: number){
+        super(nome);
+    }
+
+    getMensalidade(): number {
+        return this.mensalidade;
+    }
+
+    setMensalidade(m: number): void {
+        this.mensalidade = m;
+    }
+}
+
+class CadastroCliente {
+    private _clientes: Cliente[] = [];
+    constructor() {}
+
+    cadastrarCliente(c: Cliente) {
+        this._clientes.push(c);
+    }
+
+    get clientes(): string {
+        let lista = '';
+        this._clientes.map((m) => { lista = lista+"Nome: "+m.nome+" | Mensalidade: R$"+m.getMensalidade()+",00 \n" });
+        return lista;
+    }
+} 
+
+let cad = new CadastroCliente();
+cad.cadastrarCliente(new ClienteJuridico('Edu', 300));
+cad.cadastrarCliente(new ClienteFisico('Eduardo', 20, 1100));
+cad.cadastrarCliente(new ClienteFisico('John Doe', 70, 1100));
+console.log(cad.clientes);
