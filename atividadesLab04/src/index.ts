@@ -10,7 +10,7 @@ async function main() {
     cofre.adicionar(new Moeda(5, "5 centavos"));
     try {
         await salvarCofrinho(cofre, 'meuCofrinho.json');
-        const cofrinho = await lerCofrinho('mesuCofrinho.json');
+        const cofrinho = await lerCofrinho('meuCofrinho.json');
         console.log(cofrinho.calcularTotal());
     } catch (erro) {
         throw new PersistenciaErro('Erro no nome do arquivo!');

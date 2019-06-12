@@ -1,17 +1,17 @@
 import { Cofrinho, Moeda } from './entidades';
-import { promises, writeFileSync, readFileSync } from 'fs';
+import { promises } from 'fs';
 
 export async function salvarCofrinho(cofre: Cofrinho, nomeArquivo: string) {
     try {
         const data = JSON.stringify(cofre);
-        await writeFileSync(nomeArquivo, data); 
+        await promises.writeFile(nomeArquivo, data); 
     } catch (erro) {
         throw erro;
     }
 }
 
 export async function lerCofrinho(nomeArquivo: string): Promise<Cofrinho> {
-    const dados = await readFileSync(nomeArquivo, 'utf-8');
+    const dados = await promises.readFile(nomeArquivo, 'utf-8');
     try {
         const obj = JSON.parse(dados);
         const cofre = new Cofrinho();
