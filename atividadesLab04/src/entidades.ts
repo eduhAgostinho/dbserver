@@ -49,3 +49,9 @@ export class Cofrinho {
     }
 }
 
+export class PersistenciaErro extends Error {
+    constructor (message: string) {
+        super(message);
+        this.name = 'Erro no nome do arquivo';
+    }
+}

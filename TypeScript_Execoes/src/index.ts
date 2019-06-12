@@ -14,7 +14,7 @@ try {
 
 } catch (erro) {
     if (erro instanceof ValidationError) {
-
+        console.log(erro.name);
     } else {
         throw erro;
     }

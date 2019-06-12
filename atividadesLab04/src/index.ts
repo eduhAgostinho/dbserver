@@ -1,5 +1,5 @@
-import { Cofrinho, Moeda } from "./entidades";
-import { lerCofrinho } from './persistencia';
+import { Cofrinho, Moeda, PersistenciaErro } from "./entidades";
+import { lerCofrinho, salvarCofrinho } from './persistencia';
 
 
 async function main() {
@@ -9,11 +9,11 @@ async function main() {
     cofre.adicionar(new Moeda(25, "25 centavos"));
     cofre.adicionar(new Moeda(5, "5 centavos"));
     try {
-        const cofrinho = await lerCofrinho('meuCofrinho.json');
-        console.log(cofrinho);
+        await salvarCofrinho(cofre, 'meuCofrinho.json');
+        const cofrinho = await lerCofrinho('mesuCofrinho.json');
+        console.log(cofrinho.calcularTotal());
     } catch (erro) {
-        console.log('Erro no nome do arquivo');
-        console.log(erro);
+        throw new PersistenciaErro('Erro no nome do arquivo!');
     }
 }
 

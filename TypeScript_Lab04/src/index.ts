@@ -8,5 +8,3 @@
 // }
 
 // main();
-// teste
-console.log('res');
