@@ -1,6 +1,5 @@
 import { Livro } from '../entidades/livro';
 import { LivroModel } from './livroModel';
-import { Autor } from '../entidades/autor';
 import { ObjectID } from 'bson';
 
 export class LivroRepositorio{
@@ -9,11 +8,11 @@ export class LivroRepositorio{
         return livroNovo.save();
     }
 
-    static async livros(): Promise<Livro> {
-        return await LivroModel.find().lean().exec(); 
+    static async livros(): Promise<Livro[]> {
+        return await LivroModel.find().exec(); 
     }
 
-    static async livro(idAutor: ObjectID): Promise<Livro> {
-        return await LivroModel.find({ autores: idAutor }).lean().exec();
+    static async livroAutor(idAutor: ObjectID): Promise<Livro[]> {
+        return await LivroModel.find({ autores: idAutor }).exec();
     }
 }

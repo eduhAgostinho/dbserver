@@ -19,7 +19,6 @@ async function main() {
         // let autores = await AutorRepositorio.buscar();
         // autores.forEach(autor => console.log(autor));
 
-
         /* 
         Atividade 3
         console.log('Buscando autores por último nome...');
@@ -34,8 +33,18 @@ async function main() {
         await AutorRepositorio.novoNome('Eduardo', new ObjectID("5d026d77725f81180ca549ea"));
         */
 
-        // let autor = await AutorRepositorio.buscarPrimeiroNome('Mary')
-        // await LivroRepositorio.novoLivro({ titulo: 'Espelho Mágico', autores: autor});
+        /* 
+        Atividade 4
+        let autor = await AutorRepositorio.buscarPrimeiroNome('Mary')
+        const result = await LivroRepositorio.novoLivro({ titulo: 'Espelho Mágico2', autores: autor});
+        console.log(result);
+        
+        let livros = await LivroRepositorio.livros();
+        livros.forEach(l => console.log(l));
+        
+        let livros2 = await LivroRepositorio.livroAutor(new ObjectID("5d028487d79913227834cf17"));
+        livros2.forEach(l => console.log(l));
+        */        
 
         if (cliente && cliente.connection) {
             cliente.connection.close();
