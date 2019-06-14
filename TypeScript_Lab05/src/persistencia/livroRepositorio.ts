@@ -1,6 +1,7 @@
 import { Livro } from '../entidades/livro';
 import { LivroModel } from './livroModel';
 import { ObjectID } from 'bson';
+import { AutorModel } from './autorModel';
 
 export class LivroRepositorio{
     static async novoLivro(livro: Livro): Promise<Livro> {
@@ -9,10 +10,10 @@ export class LivroRepositorio{
     }
 
     static async livros(): Promise<Livro[]> {
-        return await LivroModel.find().exec(); 
+        return LivroModel.find().populate('autores', AutorModel).exec(); 
     }
 
     static async livroAutor(idAutor: ObjectID): Promise<Livro[]> {
-        return await LivroModel.find({ autores: idAutor }).exec();
+        return LivroModel.find({ autores: idAutor }).exec();
     }
 }

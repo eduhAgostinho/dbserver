@@ -14,14 +14,14 @@ export class AutorRepositorio {
     }
 
     static async buscarUltimoNome(ultimoNome: string): Promise<Autor[]> {
-        return await AutorModel.find({ ultimo_nome: ultimoNome }).exec();
+        return AutorModel.find({ ultimo_nome: ultimoNome }).exec();
     }
 
     static async buscarPrimeiroNome(nome: string): Promise<Autor[]> {
-        return await AutorModel.find({ primeiro_nome: nome }).exec();
+        return AutorModel.find({ primeiro_nome: nome }).exec();
     }
 
     static async novoNome(novoNome: string, obj: ObjectID): Promise<Autor> {
-        return await AutorModel.updateOne({ _id: obj },{ primeiro_nome: novoNome }).exec();
+        return AutorModel.updateOne({ _id: obj },{ $set: {primeiro_nome: novoNome }}).exec();
     }
 }

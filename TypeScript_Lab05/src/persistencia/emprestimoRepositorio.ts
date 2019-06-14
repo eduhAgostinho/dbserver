@@ -2,18 +2,19 @@ import { AutorRepositorio } from './autorRepositorio';
 import { Emprestimo } from '../entidades/emprestimo';
 import { EmprestimoModel } from './emprestimoModel';
 import { ObjectID } from 'bson';
+import { LivroModel } from './livroModel';
+import { AutorModel } from './autorModel';
 
 export class EmprestimoRepositorio {
     static async novoEmprestimo(emp: Emprestimo): Promise<Emprestimo> {
-        const novo = new EmprestimoModel(emp);
-        return await novo.save();
+        return EmprestimoModel.create(emp);
     }
 
     static async buscarEmprestimos(): Promise<Emprestimo[]> {
-        return await EmprestimoModel.find().exec();
+        return EmprestimoModel.find().populate('livro', LivroModel).exec();
     }
 
     static async novaDataRetirada(obj: ObjectID, data: Date): Promise<Emprestimo> {
-        return await EmprestimoModel.updateOne({ _id: obj}, {$set: { dataRetirada: data }}).exec();
+        return EmprestimoModel.updateOne({ _id: obj}, {$set: { dataRetirada: data }}).exec();
     }
 }

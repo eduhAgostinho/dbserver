@@ -3,6 +3,7 @@ import { AutorRepositorio } from './persistencia/autorRepositorio';
 import { ObjectID } from 'bson';
 import { LivroRepositorio } from './persistencia/livroRepositorio';
 import { EmprestimoRepositorio } from './persistencia/emprestimoRepositorio';
+import { Negocio } from './persistencia/negocio';
 
 async function main() {
     const url = 'mongodb://localhost:27017/biblioteca';
@@ -56,11 +57,12 @@ async function main() {
         let novaData = await EmprestimoRepositorio.novaDataRetirada(new ObjectID("5d03b71209bed518d04be8a0"), new Date(2019,11,25));
         console.log(novaData);
         */
-
         /* 
         Atividade 5
 
         */  
+       
+
         if (cliente && cliente.connection) {
             cliente.connection.close();
         }
