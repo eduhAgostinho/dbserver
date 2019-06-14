@@ -1,7 +1,7 @@
 import { Cofrinho, Moeda, PersistenciaErro } from "./entidades";
 import { lerCofrinho, salvarCofrinho } from './persistencia';
 
-
+ 
 async function main() {
     const cofre = new Cofrinho();
     cofre.adicionar(new Moeda(1, "1 centavo"));
