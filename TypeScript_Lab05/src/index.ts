@@ -2,6 +2,7 @@ import {connect} from 'mongoose';
 import { AutorRepositorio } from './persistencia/autorRepositorio';
 import { ObjectID } from 'bson';
 import { LivroRepositorio } from './persistencia/livroRepositorio';
+import { EmprestimoRepositorio } from './persistencia/emprestimoRepositorio';
 
 async function main() {
     const url = 'mongodb://localhost:27017/biblioteca';
@@ -34,7 +35,7 @@ async function main() {
         */
 
         /* 
-        Atividade 4
+        Atividade 4 
         let autor = await AutorRepositorio.buscarPrimeiroNome('Mary')
         const result = await LivroRepositorio.novoLivro({ titulo: 'Espelho Mágico2', autores: autor});
         console.log(result);
@@ -44,8 +45,22 @@ async function main() {
         
         let livros2 = await LivroRepositorio.livroAutor(new ObjectID("5d028487d79913227834cf17"));
         livros2.forEach(l => console.log(l));
-        */        
+               
+        let livrobusc = await LivroRepositorio.livros();
+        let emprestimo = await EmprestimoRepositorio.novoEmprestimo({ livro: livrobusc[0], dataEntrega: new Date(2019,6,14), dataRetirada: new Date(Date.now())});
+        console.log(emprestimo);
+         
+        let buscaEmprestimos = await EmprestimoRepositorio.buscarEmprestimos();
+        console.log(buscaEmprestimos);
+        
+        let novaData = await EmprestimoRepositorio.novaDataRetirada(new ObjectID("5d03b71209bed518d04be8a0"), new Date(2019,11,25));
+        console.log(novaData);
+        */
 
+        /* 
+        Atividade 5
+
+        */  
         if (cliente && cliente.connection) {
             cliente.connection.close();
         }

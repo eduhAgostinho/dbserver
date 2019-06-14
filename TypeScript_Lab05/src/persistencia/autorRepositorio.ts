@@ -22,6 +22,6 @@ export class AutorRepositorio {
     }
 
     static async novoNome(novoNome: string, obj: ObjectID): Promise<Autor> {
-        return await AutorModel.updateOne({ _id: obj },{ primeiro_nome: novoNome });
+        return await AutorModel.updateOne({ _id: obj },{ primeiro_nome: novoNome }).exec();
     }
 }
