@@ -17,4 +17,12 @@ export class EmprestimoRepositorio {
     static async novaDataRetirada(obj: ObjectID, data: Date): Promise<Emprestimo> {
         return EmprestimoModel.updateOne({ _id: obj}, {$set: { dataRetirada: data }}).exec();
     }
+
+    static async consultLivro(id: ObjectID): Promise<Emprestimo[]> {
+        return EmprestimoModel.find({ livro: id }).exec();
+    }
+
+    static async deleteEmprestimo(id: ObjectID) {
+        EmprestimoModel.deleteOne({ _id: id }).exec();
+    }
 }

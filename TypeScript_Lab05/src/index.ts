@@ -59,10 +59,17 @@ async function main() {
         */
         /* 
         Atividade 5
+            const consulta = await Negocio.consultarLivros();
+            console.log(consulta);
 
+            const emprestar = await Negocio.emprestarLivro(new ObjectID('5d07aaa7ba2d712c6054edda'));
+            console.log(emprestar);
+
+            
         */  
-       
 
+        
+        
         if (cliente && cliente.connection) {
             cliente.connection.close();
         }
