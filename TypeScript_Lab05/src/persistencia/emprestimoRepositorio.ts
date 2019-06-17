@@ -18,8 +18,8 @@ export class EmprestimoRepositorio {
         return EmprestimoModel.updateOne({ _id: obj}, {$set: { dataRetirada: data }}).exec();
     }
 
-    static async consultLivro(id: ObjectID): Promise<Emprestimo[]> {
-        return EmprestimoModel.find({ livro: id }).exec();
+    static async consultLivro(id: ObjectID): Promise<Emprestimo|null> {
+        return EmprestimoModel.findOne({ livro: id }).exec();
     }
 
     static async deleteEmprestimo(id: ObjectID) {

@@ -3,7 +3,7 @@ import { AutorRepositorio } from './persistencia/autorRepositorio';
 import { ObjectID } from 'bson';
 import { LivroRepositorio } from './persistencia/livroRepositorio';
 import { EmprestimoRepositorio } from './persistencia/emprestimoRepositorio';
-import { Negocio } from './persistencia/negocio';
+import { consultarLivros, devolverLivro, emprestarLivro } from './persistencia/negocio';
 
 async function main() {
     const url = 'mongodb://localhost:27017/biblioteca';
@@ -65,10 +65,10 @@ async function main() {
             const emprestar = await Negocio.emprestarLivro(new ObjectID('5d07aaa7ba2d712c6054edda'));
             console.log(emprestar);
 
-            
+             
         */  
-
-        
+        const consulta = await LivroRepositorio.livros();
+        console.log(consulta);
         
         if (cliente && cliente.connection) {
             cliente.connection.close();
