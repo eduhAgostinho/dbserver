@@ -47,14 +47,13 @@ export async function devolverLivro(idLivro: ObjectID): Promise<string> {
         if (data > consulta.dataEntrega) {
             const dias = data.getDay() - consulta.dataEntrega.getDay();
             // $0.50 por dia
-            console.log(dias, data.getDate(), consulta.dataEntrega.getDate());
             // await EmprestimoRepositorio.deleteEmprestimo(consulta._id);
             return `Livro devolvido com sucesso. Multa é de R$${dias*0.5}`;
         } else {
-            return 'data menor';
+            return 'Livro devolvido com sucesso';
         }
     } else {
-        return 'livro não encontrado';
+        throw new Error('Livro não está emprestado ou não existe');
     } 
 
 

@@ -72,6 +72,7 @@ async function main() {
         // const novoEmp = await EmprestimoRepositorio.novoEmprestimo({ livro: livros[1], dataEntrega: new Date(2019,5,20) });
         // const devolver = await devolverLivro(new ObjectID('5d03b3fb5c498129d0df09ed'));
         // console.log(devolver);        
+
         if (cliente && cliente.connection) {
             cliente.connection.close();
         }
