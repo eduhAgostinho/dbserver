@@ -5,5 +5,5 @@ export interface Emprestimo {
     livro: Livro,
     dataRetirada ?: Date,
     dataEntrega: Date,
-    // _id ?: Types.ObjectId
+    identificador ?: string
 }
