@@ -14,6 +14,11 @@ const emprestimoSchema = new Schema({
     dataEntrega: { 
         type: Date 
     }
+    ,
+    _id: {
+        type: Schema.Types.ObjectId,
+        auto: true
+    }
 });
 
 interface EmprestimoDocument extends Emprestimo, Document {}
