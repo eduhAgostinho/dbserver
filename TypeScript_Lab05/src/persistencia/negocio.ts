@@ -1,6 +1,4 @@
 import { ObjectID } from "bson";
-import { Livro } from "../entidades/livro";
-import { LivroModel } from "./livroModel";
 import { LivroRepositorio } from "./livroRepositorio";
 import { EmprestimoRepositorio } from "./emprestimoRepositorio";
 import { LivroStatus } from '../entidades/LivroStatus';
@@ -8,17 +6,18 @@ import { Emprestimo } from "../entidades/emprestimo";
 
 export async function consultarLivros(): Promise<LivroStatus[]> {
     let livroStatus:LivroStatus[] = [];
-    const titulos: string[] = [];
+    const codigos: string[] = [];
     const emprestimos = await EmprestimoRepositorio.buscarEmprestimos();
     emprestimos.forEach(e => { livroStatus.push( { 
         titulo: e.livro.titulo, 
         autores: e.livro.autores, 
         dataEntrega: e.dataEntrega, 
-        disponivel: false 
+        disponivel: false,
+        codigo: e.livro.codigo
     })});
-    emprestimos.forEach(e => { titulos.push(e.livro.titulo) });
-    const livrosDisp = await LivroRepositorio.naoLivro(titulos);
-    livrosDisp.forEach(l => { livroStatus.push( { titulo: l.titulo, autores: l.autores , disponivel: true } ) });
+    emprestimos.forEach(e => { codigos.push(e.livro.codigo) });
+    const livrosDisp = await LivroRepositorio.naoLivro(codigos);
+    livrosDisp.forEach(l => { livroStatus.push( { titulo: l.titulo, autores: l.autores , disponivel: true, codigo: l.codigo } ) });
     return livroStatus;
 }
 
@@ -28,13 +27,14 @@ export async function emprestarLivro(idLivro: ObjectID): Promise<Emprestimo> {
     if (livro) {
         const consultEmp = await EmprestimoRepositorio.consultLivro(idLivro);
         if (consultEmp) {
-            throw new Error('Livro já cadastrado!');
+            throw new Error('Livro já emprestado!');
         }
-            const novoEmp: Emprestimo = {
-                livro: livro, 
-                dataEntrega: new Date(data.getFullYear(), data.getMonth(), data.getDay()+7)
-            }
-            return await EmprestimoRepositorio.novoEmprestimo(novoEmp);
+        const novoEmp: Emprestimo = {
+            livro: livro, 
+            dataEntrega: new Date(data.getFullYear(), data.getMonth(), data.getDate()+7),
+            codigo: 'COD'+Math.floor(Math.random() * (+10000000 - +1)) + +1
+        }
+        return await EmprestimoRepositorio.novoEmprestimo(novoEmp);
     } else {
         throw new Error('Livro não encontrado');
     }
@@ -47,9 +47,10 @@ export async function devolverLivro(idLivro: ObjectID): Promise<string> {
         if (data > consulta.dataEntrega) {
             const dias = data.getDay() - consulta.dataEntrega.getDay();
             // $0.50 por dia
-            // await EmprestimoRepositorio.deleteEmprestimo(consulta._id);
+            await EmprestimoRepositorio.deleteEmprestimo(consulta.codigo);
             return `Livro devolvido com sucesso. Multa é de R$${dias*0.5}`;
         } else {
+            await EmprestimoRepositorio.deleteEmprestimo(consulta.codigo);
             return 'Livro devolvido com sucesso';
         }
     } else {

@@ -17,8 +17,8 @@ export class LivroRepositorio{
         return LivroModel.find({ autores: idAutor }).exec();
     }
 
-    static async naoLivro(titulos: string[]): Promise<Livro[]> {
-        return LivroModel.find().where({titulo :{ $nin: titulos }});
+    static async naoLivro(cod: string[]): Promise<Livro[]> {
+        return LivroModel.find().where({codigo :{ $nin: cod }});
     }
 
     static async livroID(id: ObjectID): Promise<Livro | null> {

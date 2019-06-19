@@ -9,7 +9,12 @@ const livroSchema = new Schema({
     autores: [{ 
         type: SchemaTypes.ObjectId, 
         ref: 'Autor' 
-    }]
+    }],
+    codigo : {
+        type: String,
+        required: true,
+        unique: true,
+    }
 });
 
 interface LivroDocument extends Livro, Document {}

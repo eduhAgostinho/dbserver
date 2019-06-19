@@ -22,7 +22,7 @@ export class EmprestimoRepositorio {
         return EmprestimoModel.findOne({ livro: id }).exec();
     }
 
-    static async deleteEmprestimo(id: ObjectID) {
-        EmprestimoModel.deleteOne({ _id: id }).exec();
+    static async deleteEmprestimo(cod: string) {
+        return EmprestimoModel.deleteOne({ codigo: cod }).exec();
     }
 }

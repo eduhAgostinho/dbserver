@@ -5,4 +5,5 @@ import { Schema } from 'mongoose';
 export interface Livro {
     titulo: string,
     autores: Autor[],
+    codigo: string
 }

@@ -13,6 +13,11 @@ const emprestimoSchema = new Schema({
     },
     dataEntrega: { 
         type: Date
+    },
+    codigo: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 

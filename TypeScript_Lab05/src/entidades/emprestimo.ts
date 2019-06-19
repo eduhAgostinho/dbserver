@@ -5,5 +5,6 @@ export interface Emprestimo {
     livro: Livro,
     dataRetirada ?: Date,
     dataEntrega: Date,
-    identificador ?: string
+    identificador ?: string,
+    codigo: string
 }

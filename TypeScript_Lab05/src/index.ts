@@ -8,7 +8,7 @@ import { consultarLivros, devolverLivro, emprestarLivro } from './persistencia/n
 async function main() {
     const url = 'mongodb://localhost:27017/biblioteca';
     try {
-        const cliente = await connect(url, { useNewUrlParser: true });
+        const cliente = await connect(url, { useNewUrlParser: true, useCreateIndex: true });
         console.log('Conectado com sucesso');
 
         // console.log('Adicionando autores...');
@@ -36,7 +36,7 @@ async function main() {
         */
 
         /* 
-        Atividade 4 
+        // Atividade 4 
         let autor = await AutorRepositorio.buscarPrimeiroNome('Mary')
         const result = await LivroRepositorio.novoLivro({ titulo: 'Espelho Mágico2', autores: autor});
         console.log(result);
@@ -58,20 +58,15 @@ async function main() {
         console.log(novaData);
         */
         /* 
-        Atividade 5
-            const consulta = await Negocio.consultarLivros();
-            console.log(consulta);
+        // Atividade 5
+        const consulta = await o.consultarLivros();
+        console.log(consulta);
 
-            const emprestar = await Negocio.emprestarLivro(new ObjectID('5d07aaa7ba2d712c6054edda'));
-            console.log(emprestar);
-
-             
+        const emprestar = await emprestarLivro(new ObjectID('5d0a4adefdd6dd29b4383760'));
+        console.log(emprestar);
         */ 
-    
-        // let livros = await LivroRepositorio.livros();
-        // const novoEmp = await EmprestimoRepositorio.novoEmprestimo({ livro: livros[1], dataEntrega: new Date(2019,5,20) });
-        // const devolver = await devolverLivro(new ObjectID('5d03b3fb5c498129d0df09ed'));
-        // console.log(devolver);        
+        const devolver = await devolverLivro(new ObjectID('5d0a4adefdd6dd29b4383760'));
+        console.log(devolver);        
 
         if (cliente && cliente.connection) {
             cliente.connection.close();
