@@ -64,9 +64,11 @@ async function main() {
 
         const emprestar = await emprestarLivro(new ObjectID('5d0a4adefdd6dd29b4383760'));
         console.log(emprestar);
-        */ 
+
         const devolver = await devolverLivro(new ObjectID('5d0a4adefdd6dd29b4383760'));
-        console.log(devolver);        
+        console.log(devolver); 
+        */ 
+               
 
         if (cliente && cliente.connection) {
             cliente.connection.close();
