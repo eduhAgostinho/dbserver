@@ -8,11 +8,10 @@ export class LivroRepositorio {
     }
 
     static async buscar(): Promise<Livro[]> {
-        //return LivroModel.find().populate({path:'autores', model:AutorModel}).exec();
         return LivroModel.find().populate('autores', AutorModel).exec();
     }
 
-    static async buscarPorAutor(id:string): Promise<Livro[]> {
+    static async buscarPorAutor(id:string): Promise<Livro|null> {
         return LivroModel.where('autores').equals(id).populate('autores', AutorModel).exec();
     }
 

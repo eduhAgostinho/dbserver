@@ -18,14 +18,3 @@ export async function emprestarLivro(idLivro:string):Promise<Emprestimo>{
     }
 }
 
-export async function todosLivros():Promise<Livro[]>{
-    return await LivroRepositorio.buscar();
-}
-
-export async function consultarLivroPorId(id: string): Promise<Livro|null> {
-    return await LivroRepositorio.buscarPorId(id);
-}
-
-export async function novoLivro(l: Livro):Promise<Livro> {
-    return await LivroRepositorio.criar(l);
-}
