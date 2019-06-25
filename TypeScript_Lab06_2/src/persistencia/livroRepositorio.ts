@@ -11,11 +11,16 @@ export class LivroRepositorio {
         return LivroModel.find().populate('autores', AutorModel).exec();
     }
 
-    static async buscarPorAutor(id:string): Promise<Livro|null> {
+    static async buscarPorAutor(id:string): Promise<Livro[]> {
         return LivroModel.where('autores').equals(id).populate('autores', AutorModel).exec();
     }
 
     static async buscarPorId(id:string): Promise<Livro|null> {
         return LivroModel.findById(id).exec();
     }
+
+    static async naoLivro(cod: string[]): Promise<Livro[]> {
+        return LivroModel.find().where({codigo :{ $nin: cod }});
+    }
+
 }

@@ -22,5 +22,8 @@ export class AutorRepositorio {
         return consulta.exec();
     }
 
+    static async buscarPorID(id: string): Promise<Autor|null> {
+        return AutorModel.findById(id).exec();
+    }
     
 }

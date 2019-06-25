@@ -1,5 +1,4 @@
 import { Livro } from "./livro";
-import { Types } from "mongoose";
 
 export interface Emprestimo {
     livro: Livro,

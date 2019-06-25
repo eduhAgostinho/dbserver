@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
-// import { todosLivros, consultarLivroPorId, novoLivro, livroPorIdAutor } from '../negocio/negocio';
 import { Livro } from '../entidades/livro';
 import { LivroRepositorio } from '../persistencia/livroRepositorio';
+import { buscarLivroPorAutor } from '../negocio/negocio';
 
 export class LivroControlador { 
     static async livros(req: Request, res: Response, next: NextFunction) {
@@ -40,8 +40,12 @@ export class LivroControlador {
     static async buscarPorAutor(req: Request, res: Response, next: NextFunction) {
         try {
             const autor = req.query.idAutor;
-            const query = await LivroRepositorio.buscarPorAutor(autor);
-            res.json(query);
+            const query = await buscarLivroPorAutor(autor);
+            if (!query) { 
+                res.status(404).send('Autor não existe').end();
+            } else {
+                res.json(query);
+            }
         } catch (error) {
             next(error);
         }
