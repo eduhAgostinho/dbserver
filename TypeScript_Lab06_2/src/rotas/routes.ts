@@ -19,3 +19,4 @@ router.get('/autores/:id', AutorControlador.buscarPorId);
 
 router.get('/emprestimos', EmprestimoControlador.emprestimos);
 router.put('/emprestimos/:idLivro', EmprestimoControlador.emprestarLivro);
+router.put('/emprestimos/novaData/:idEmprestimo', EmprestimoControlador.novaData);

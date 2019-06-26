@@ -22,4 +22,8 @@ export class EmprestimoRepositorio {
     static async deleteEmprestimo(cod: string) {
         return EmprestimoModel.deleteOne({ codigo: cod }).exec();
     }
+
+    static async emprestimo(id: string): Promise<Emprestimo|null> {
+        return EmprestimoModel.findById(id).exec();
+    }
 }

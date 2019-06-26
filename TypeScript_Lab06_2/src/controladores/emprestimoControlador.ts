@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { emprestarLivro } from '../negocio/negocio';
+import { emprestarLivro, dataEmprestimo } from '../negocio/negocio';
 import { EmprestimoRepositorio } from '../persistencia/emprestimoRepositorio';
 
 export class EmprestimoControlador{
@@ -21,6 +21,22 @@ export class EmprestimoControlador{
         try {
             const emprestimos = await EmprestimoRepositorio.buscar();
             res.json(emprestimos);
+        } catch (erro) {
+            next(erro);
+        }
+    }
+
+    static async novaData(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.idEmprestimo;
+            const data = req.body;
+            const consult = await dataEmprestimo(id);
+            if (consult) {
+                await EmprestimoRepositorio.novaDataRetirada(id, data.novaData);
+                res.status(200);
+            } else {
+                res.status(404);
+            }
         } catch (erro) {
             next(erro);
         }

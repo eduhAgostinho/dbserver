@@ -1,6 +1,6 @@
 import { Emprestimo } from "../entidades/emprestimo";
 import { LivroRepositorio } from "../persistencia/livroRepositorio";
-import { EmprestimoRepositorio } from "../persistencia/emprestimoRepositorio";
+import { EmprestimoRepositorio,  } from "../persistencia/emprestimoRepositorio";
 import { Livro } from "../entidades/livro";
 import { AutorRepositorio } from "../persistencia/autorRepositorio";
 import { LivroStatus } from '../entidades/livroStatus';
@@ -47,6 +47,10 @@ export async function consultarLivros(): Promise<LivroStatus[]> {
     const livrosDisp = await LivroRepositorio.naoLivro(codigos);
     livrosDisp.forEach(l => { livroStatus.push( { titulo: l.titulo, autores: l.autores , disponivel: true, codigo: l.codigo } ) });
     return livroStatus;
+}
+
+export async function dataEmprestimo(idEmp: string): Promise<Emprestimo|null> {
+    return await EmprestimoRepositorio.emprestimo(idEmp);   
 }
 
 
