@@ -2,11 +2,12 @@ import { Response, Request, NextFunction } from 'express';
 import { Livro } from '../entidades/livro';
 import { LivroRepositorio } from '../persistencia/livroRepositorio';
 import { buscarLivroPorAutor } from '../negocio/negocio';
+import { consultarLivros } from '../negocio/negocio';
 
 export class LivroControlador { 
     static async livros(req: Request, res: Response, next: NextFunction) {
         try {
-            const query = await LivroRepositorio.buscar();
+            const query = await consultarLivros();
             res.json(query);
         } catch (error) {
             next(error);

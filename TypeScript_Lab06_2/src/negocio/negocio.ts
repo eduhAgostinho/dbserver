@@ -53,5 +53,22 @@ export async function dataEmprestimo(idEmp: string): Promise<Emprestimo|null> {
     return await EmprestimoRepositorio.emprestimo(idEmp);   
 }
 
+export async function devolverLivro(idLivro: string): Promise<string|false> {
+    const data = new Date();
+    const consulta = await EmprestimoRepositorio.consultLivro(idLivro);
+    if (consulta) {
+        if (data > consulta.dataEntrega) {
+            const dias = data.getDate() - consulta.dataEntrega.getDate();
+            // $0.50 por dia
+            await EmprestimoRepositorio.deleteEmprestimo(consulta.codigo);
+            return `Livro devolvido com sucesso. Multa é de R$${dias*0.5}`;
+        } else {
+            await EmprestimoRepositorio.deleteEmprestimo(consulta.codigo);
+            return 'Livro devolvido com sucesso!';
+        }
+    } else {
+        return false;
+    } 
+}
 
 

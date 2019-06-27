@@ -6,5 +6,6 @@ interface EmprestimoDocument extends Emprestimo, Document {}
 export const EmprestimoModel: Model<EmprestimoDocument> = model<EmprestimoDocument>('Emprestimo', new Schema({
     livro: { type: SchemaTypes.ObjectId, ref: 'Livro', required: true },
     dataRetirada: { type: Date, default: Date.now },
-    dataEntrega: { type: Date }
+    dataEntrega: { type: Date },
+    codigo: { type: String, unique: true, required: true }
 }), 'emprestimos');

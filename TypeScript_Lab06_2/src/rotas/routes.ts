@@ -18,5 +18,8 @@ router.get('/autores/ultimoNome/:nome', AutorControlador.buscarUltimoNome);
 router.get('/autores/:id', AutorControlador.buscarPorId);
 
 router.get('/emprestimos', EmprestimoControlador.emprestimos);
+router.get('/emprestimos/search?', EmprestimoControlador.consultarLivro);
 router.put('/emprestimos/:idLivro', EmprestimoControlador.emprestarLivro);
 router.put('/emprestimos/novaData/:idEmprestimo', EmprestimoControlador.novaData);
+router.delete('/emprestimos', EmprestimoControlador.devolverLivro);
+router.get('/emprestimos/:idEmp', EmprestimoControlador.emprestimo);
