@@ -23,4 +23,4 @@ function logMapElements(value: string, key: string, map: Map<string,string>) {
     console.log(`map.get('${key}') = ${value}`);
 }
 
-mapa.forEach(logMapElements);
+mapa.forEach(logMapElements); 
