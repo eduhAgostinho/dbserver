@@ -1,0 +1,8 @@
+a) No projeto, foi usado um método do Express chamado Render, onde ele renderiza a View e envia renderizado um código PUG,
+uma API que compila seu código em HTML.
+
+b)  Compression - Compactação Gzip, diminuindo o tamanho do corpo de resposta aumentando a velocidade da aplicação;
+    Body-parser - converte o corpo de uma requisição como por exemplo, para JSON;
+    Session - Usado para trabalhar com cookies. Ele armazena os dados da sessão no servidor;
+    Passport - Middlware de autenticação;
+    Flash - Define uma mensagem Flash e processá-la sem redirecionar a solicitação;
