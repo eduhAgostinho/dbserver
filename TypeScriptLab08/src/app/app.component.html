@@ -1,8 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  
-
-<router-outlet></router-outlet>
+<!-- <mat-toolbar>My App</mat-toolbar> -->
+<nav>
+  <div class="nav-wrapper">
+    <!-- <a href="#" class="brand-logo center">Home</a> -->
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a routerLink="/tarefas" >Terefas</a></li>
+      <li><a routerLink="/cadastrar">Cadastrar</a></li>
+    </ul>
+  </div>
+</nav>
+<div id="margem">
+  <router-outlet></router-outlet>
+</div>
