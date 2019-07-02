@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CadastroComponent } from './cadastro.component';
+import { TodoFiltrarComponent } from './todo-filtrar.component';
 
-describe('CadastroComponent', () => {
-  let component: CadastroComponent;
-  let fixture: ComponentFixture<CadastroComponent>;
+describe('TodoFiltrarComponent', () => {
+  let component: TodoFiltrarComponent;
+  let fixture: ComponentFixture<TodoFiltrarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CadastroComponent ]
+      declarations: [ TodoFiltrarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CadastroComponent);
+    fixture = TestBed.createComponent(TodoFiltrarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

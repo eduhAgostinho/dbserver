@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TarefasComponent } from './tarefas.component';
+import { TodoEditarComponent } from './todo-editar.component';
 
-describe('TarefasComponent', () => {
-  let component: TarefasComponent;
-  let fixture: ComponentFixture<TarefasComponent>;
+describe('TodoEditarComponent', () => {
+  let component: TodoEditarComponent;
+  let fixture: ComponentFixture<TodoEditarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TarefasComponent ]
+      declarations: [ TodoEditarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TarefasComponent);
+    fixture = TestBed.createComponent(TodoEditarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
