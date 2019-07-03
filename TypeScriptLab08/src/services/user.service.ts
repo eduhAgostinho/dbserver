@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  private urlBase = 'https://jsonplaceholder.typicode.com.users';
+  private urlBase = 'https://jsonplaceholder.typicode.com/users';
 
   constructor(private http: HttpClient) { }
 
