@@ -172,5 +172,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Jest
+coverage/
 # End of https://www.gitignore.io/api/node,angular,visualstudiocode
 

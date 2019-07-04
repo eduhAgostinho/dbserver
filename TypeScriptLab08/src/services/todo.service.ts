@@ -19,23 +19,28 @@ export class TodoService {
 
   constructor(private http: HttpClient, private userServ: UserService) { }
 
-  // buscarTodos(): Observable<Todo> {
-  //   return this.http.get<Todo>(this.urlBase)
-  //   .pipe(
-  //     map( x => {this.getTarefas(x)})
-  //   );
-  // }
-  getTarefas(todo: Todo) {
+  buscarTodos() {
+    return this.http.get<Todo>(this.urlBase)
+    .pipe(
+      map( x => {
+        const a = this.getTarefas(x);
+
+      })
+    );
   }
-  /* 
+  getTarefas(todo: Todo): Observable<User> {
+    return this.userServ.buscarPorId(todo.userId);
+  }
+
+  /*
   observ.pipe(
-    map( 
-      x => fazAlgo(x)
-      concatALl() 
+    map(
+      x => fazAlgo(x) ----> retorna observable
+      concatALl()
     )
   )
   */
-  
+
 
   buscarPorId(userId: number): Observable<Todo[]> {
     return this.http.get<Todo[]>(`${this.urlBase2}/${userId}`);
