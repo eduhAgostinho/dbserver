@@ -14,18 +14,19 @@ import { User } from 'src/model/user';
 })
 export class TodoService {
   private urlBase = 'https://jsonplaceholder.typicode.com/todos';
-  private urlBase2 = 'https://jsonplaceholder.typicode.com/users';
   private sub: Subscription;
   constructor(private http: HttpClient, private userServ: UserService) { }
 
   buscarTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.urlBase)
     .pipe(
-      
+      map( todos => {
+        todos.map( this.getTarefas(todos)concatAll() )
+      })
     );
   }
 
-  getTarefas(todo: Todo) {
+  getTarefas(todo: Todo): Observable<User> {
     return this.userServ.buscarPorId(todo.userId);
   }
 
@@ -39,7 +40,4 @@ export class TodoService {
   */
 
 
-  buscarPorId(userId: number): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.urlBase2}/${userId}`);
-  }
 }

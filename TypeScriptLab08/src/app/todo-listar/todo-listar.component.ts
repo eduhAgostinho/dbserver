@@ -18,8 +18,7 @@ export class TodoListarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.colunas = ['title', 'name', 'completed'];
-    // this.sub = this.todoService.buscarTodos().subscribe((result) => {this.tarefas = result; console.log(this.tarefas)});
-    console.log(this.tarefas, "vazio");
+
   }
 
   ngOnDestroy() {
