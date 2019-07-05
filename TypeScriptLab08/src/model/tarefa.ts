@@ -1,5 +1,5 @@
-export interface Tarefa {
-    title: string,
-    completed: boolean,
-    name: string
+import { Todo } from './todo';
+
+export interface Tarefa extends Todo {
+    name ?: string
 }
