@@ -5,23 +5,22 @@ import { UserService } from './user.service';
 import { Todo } from 'src/model/todo';
 import { Tarefa } from 'src/model/tarefa';
 import { Subscription, of} from 'rxjs';
-import { map, concatAll, concatMap } from 'rxjs/operators';
-import { User } from 'src/model/user';
-
+import { map, concatAll } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   private urlBase = 'https://jsonplaceholder.typicode.com/todos';
-  private urlBase2 = 'https://jsonplaceholder.typicode.com/users';
   private sub: Subscription;
   constructor(private http: HttpClient, private userServ: UserService) { }
 
-  buscarTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.urlBase)
+  buscarTodos(): Observable<Tarefa[]> {
+    return this.http.get<Tarefa[]>(this.urlBase)
     .pipe(
-      
+      map( todo => { todo.map( t => {
+        this.sub = this.getTarefas(t).subscribe( user => t.name = user.username )
+      }); return todo })
     );
   }
 
@@ -29,17 +28,4 @@ export class TodoService {
     return this.userServ.buscarPorId(todo.userId);
   }
 
-  /*
-    observ.pipe(
-      map(
-        x => fazAlgo(x) ----> retorna observable
-        concatALl()
-      )
-    )
-  */
-
-
-  buscarPorId(userId: number): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.urlBase2}/${userId}`);
-  }
 }
